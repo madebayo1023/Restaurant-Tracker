@@ -1,8 +1,14 @@
 import React, {useState} from 'react'
 import { PageHeader, Input, Button, Card } from 'antd';
 import { Link } from "@reach/router"
-const { TextArea } = Input;
 
+import { auth, db } from "/Users/aashiagrawal/Documents/CS_222_new/course-project-group-62/food_app/src/base.js";
+// import "./Signup.css";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
+import { ref, set } from "firebase/database";
+
+const { TextArea } = Input;
 
 const SignUp = (props) => {
     const [email, setEmail] = useState('')
@@ -15,20 +21,41 @@ const SignUp = (props) => {
     const onFirstNameChange = (event) => setFirstName(event.target.value)
     const onLastNameChange = (event) => setLastName(event.target.value)
 
-    const onSignUp = () => {
-        console.log('sign up')
-        console.log(email, password, firstName, lastName)
+    // const onSignUp = () => {
+    //     console.log('sign up')
+    //     console.log(email, password, firstName, lastName)
 
-        // createUserWithEmailAndPassword(auth, email, password)
-        //     .catch(function(error) {
-        //         console.log('error in signup')
-        //     });
+    //     // createUserWithEmailAndPassword(auth, email, password)
+    //     //     .catch(function(error) {
+    //     //         console.log('error in signup')
+    //     //     });
+
+    //     setEmail('')
+    //     setPassword('')
+    //     setFirstName('')
+    //     setLastName('')
+    // }
+
+    const onSignUp = (e) => {
+        e.preventDefault();
+        function onRegister() {
+          createUserWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+              set(ref(db, "users/" + userCredential.user.uid), {
+                firstName: firstName,
+                lastName: lastName,
+                email: email,
+              });
+            })
+            .catch((error) => console.log(error));
+        }
+        onRegister();
 
         setEmail('')
         setPassword('')
         setFirstName('')
         setLastName('')
-    }
+      };
 
   return (
     <div className="sign_up_container">

@@ -9,16 +9,16 @@ import { BrowserRouter, Routes, Route} from "react-router-dom";
 function App() {
   return (
     <div className="app_container"> 
-    {/* <Router> 
+    <Router> 
         <LogIn path="/log_in" default/>
         <SignUp path="/sign_up"/>
-    </Router> */}
-    <BrowserRouter>
+    </Router>
+    {/* <BrowserRouter>
       <Routes>
         <Route exact path="/sign_in" element={<LogIn />}/>
         <Route exact path="/sign_up" element={<SignUp />}/>
       </Routes>
-    </BrowserRouter>
+    </BrowserRouter> */}
 </div>
   );
 }

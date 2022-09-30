@@ -1,5 +1,7 @@
 import React, {useState} from 'react'
 import { PageHeader, Input, Button, Card } from 'antd';
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth} from "/Users/aashiagrawal/Documents/CS_222_new/course-project-group-62/food_app/src/base.js";
 import { Link } from "@reach/router"
 const { TextArea } = Input;
 
@@ -11,18 +13,31 @@ const LogIn = (props) => {
     const onEmailChange = (event) => setEmail(event.target.value)
     const onPasswordChange = (event) => setPassword(event.target.value)
 
-    const onSignUp = () => {
-        console.log('log in')
-        console.log(email, password)
+    // const onSignUp = () => {
+    //     console.log('log in')
+    //     console.log(email, password)
 
-        // createUserWithEmailAndPassword(auth, email, password)
-        //     .catch(function(error) {
-        //         console.log('error in signup')
-        //     });
+    //     // createUserWithEmailAndPassword(auth, email, password)
+    //     //     .catch(function(error) {
+    //     //         console.log('error in signup')
+    //     //     });
 
+    //     setEmail('')
+    //     setPassword('')
+        
+    // }
+    
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        function onRegister() {
+          signInWithEmailAndPassword(auth, email, password).catch((error) =>
+            console.log(error)
+          );
+        }
+        onRegister();
         setEmail('')
         setPassword('')
-    }
+    };
 
   return (
     <div className="sign_up_container">
@@ -64,7 +79,7 @@ const LogIn = (props) => {
                         </div>
 
                         <div className="input_button">
-                            <Button type="primary" size="large" style={{marginTop:'20px'}} onClick={onSignUp}>
+                            <Button type="primary" size="large" style={{marginTop:'20px'}} onClick={handleSubmit}>
                                 Log In
                             </Button> 
                         </div>
