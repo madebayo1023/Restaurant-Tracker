@@ -1,4 +1,4 @@
-body {
+/* body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -10,4 +10,33 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+} */
+@import '~antd/dist/antd.css';
+
+.site-page-header {
+  border: 1px solid rgb(206, 166, 228);
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+}
+
+.app_container {
+  width: 1200px;
+  margin: 0px auto;
+  margin-top: 10px;
+}
+.app_main_navigation {
+  margin-bottom: 20px
+}
+.post_input_button {
+  float: right
+}
+.posts_inputs_container {
+  margin-top: 20px;
+}
+.posts_input_container {
+  margin-bottom: 20px;
 }
