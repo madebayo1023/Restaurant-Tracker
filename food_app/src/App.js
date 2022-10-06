@@ -1,23 +1,25 @@
-import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./Home";
-import Login from "./Login";
-import SignUp from "./Signup";
-import { AuthProvider } from "./AuthProvider";
+import logo from './logo.svg';
+import './App.css';
+import './index.css'
+import SignUp from "./components/SignUp";
+import LogIn from "./components/LogIn";
+import { Router, Link } from '@reach/router';
+import { BrowserRouter, Routes, Route} from "react-router-dom";
 
 function App() {
   return (
-    <AuthProvider>
-      <div className="app">
-        <BrowserRouter>
-          <Routes>
-            <Route exact path="/" element={<Home />} />
-            <Route exact path="/login" element={<Login />} />
-            <Route exact path="/signup" element={<SignUp />} />
-          </Routes>
-        </BrowserRouter>
-      </div>
-    </AuthProvider>
+    <div className="app_container"> 
+    <Router> 
+        <LogIn path="/log_in" default/>
+        <SignUp path="/sign_up"/>
+    </Router>
+    {/* <BrowserRouter>
+      <Routes>
+        <Route exact path="/sign_in" element={<LogIn />}/>
+        <Route exact path="/sign_up" element={<SignUp />}/>
+      </Routes>
+    </BrowserRouter> */}
+</div>
   );
 }
 
