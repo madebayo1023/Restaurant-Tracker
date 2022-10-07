@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import { PageHeader, Input, Button, Card } from 'antd';
 import { Link } from "@reach/router"
 
-import { auth, db } from "/Users/aashiagrawal/Documents/CS_222_new/course-project-group-62/food_app/src/base.js";
+import { auth, db } from "../base.js";
 // import "./Signup.css";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
