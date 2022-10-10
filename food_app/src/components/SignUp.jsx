@@ -11,10 +11,10 @@ import { ref, set } from "firebase/database";
 const { TextArea } = Input;
 
 const SignUp = (props) => {
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const [firstName, setFirstName] = useState('')
-    const [lastName, setLastName] = useState('')
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+    const [firstName, setFirstName] = useState("")
+    const [lastName, setLastName] = useState("")
 
     const onEmailChange = (event) => setEmail(event.target.value)
     const onPasswordChange = (event) => setPassword(event.target.value)
@@ -51,10 +51,10 @@ const SignUp = (props) => {
         }
         onRegister();
 
-        setEmail('')
-        setPassword('')
-        setFirstName('')
-        setLastName('')
+        setEmail("")
+        setPassword("")
+        setFirstName("")
+        setLastName("")
       };
 
   return (
