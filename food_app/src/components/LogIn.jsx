@@ -7,8 +7,8 @@ const { TextArea } = Input;
 
 
 const LogIn = (props) => {
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
 
     const onEmailChange = (event) => setEmail(event.target.value)
     const onPasswordChange = (event) => setPassword(event.target.value)
@@ -35,10 +35,10 @@ const LogIn = (props) => {
           );
         }
         onRegister();
-        setEmail('')
-        setPassword('')
+        setEmail("")
+        setPassword("")
     };
-
+    console.log({email});
   return (
     <div className="sign_up_container">
             <div className="page_header_container">
