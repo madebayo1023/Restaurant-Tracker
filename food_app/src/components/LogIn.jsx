@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import { PageHeader, Input, Button, Card } from 'antd';
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth} from "../base.js";
-import { Link } from "@reach/router"
+import { navigate, Link } from "@reach/router"
 const { TextArea } = Input;
 
 
@@ -37,6 +37,9 @@ const LogIn = (props) => {
         onRegister();
         setEmail("")
         setPassword("")
+
+        navigate('/home')
+
     };
     console.log({email});
   return (
@@ -79,7 +82,7 @@ const LogIn = (props) => {
                         </div>
 
                         <div className="input_button">
-                            <Button type="primary" size="large" style={{marginTop:'20px'}} onClick={handleSubmit}>
+                            <Button type="primary" size="large" style={{marginTop:'30px'}} onClick={handleSubmit}>
                                 Log In
                             </Button> 
                         </div>
