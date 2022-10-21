@@ -6,7 +6,8 @@ import { AuthContext } from "./AuthProvider";
 // import "./Home.css";
 import { useNavigate } from "react-router-dom";
 import { ref, onValue } from "firebase/database";
-import MenuComponent from "./components/Menu";
+import MenuComponent from "./components/Home";
+import log_saved_post from "./components/Home";
 
 function Home() {
   // const { currentUser } = useContext(AuthContext);
@@ -36,6 +37,7 @@ function Home() {
   return (
     <div>
       <MenuComponent></MenuComponent>
+      <log_saved_post></log_saved_post>
       {/* {currentUser && <p>Welcome, {username}</p>}
       <div className="buttons">
         <button onClick={clickLogin}>
