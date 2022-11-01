@@ -2,6 +2,30 @@ import { MoreOutlined } from '@ant-design/icons';
 import { navigate } from '@reach/router';
 import { Button, Dropdown, Menu, PageHeader, Row, Tag, Typography } from 'antd';
 import React from 'react';
+
+
+import {
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  PopoverHeader,
+  PopoverBody,
+  PopoverFooter,
+  PopoverArrow,
+  PopoverCloseButton,
+  PopoverAnchor,
+  Box,
+} from '@chakra-ui/react'
+
+import {
+  FormControl,
+  FormLabel,
+  FormErrorMessage,
+  FormHelperText,
+} from '@chakra-ui/react'
+
+import { Input} from 'antd';
+
 const menu = (
   <Menu
     items={[
@@ -69,8 +93,11 @@ const MenuComponent = () => (
             </Button>
       </div>,
       <div>
+        <Popover placement='top'> 
+        <PopoverTrigger>
+        
       <Button key="5" className='b2'>Log Meal
-
+      
 
       <style>{`
               .b2 {
@@ -86,6 +113,33 @@ const MenuComponent = () => (
           `}</style>
 
         </Button>
+        </PopoverTrigger>
+        <PopoverContent>
+        <PopoverHeader fontWeight='semibold'>Enter Meal</PopoverHeader>
+          <PopoverArrow />
+          <PopoverCloseButton />
+          <PopoverBody>
+          <Box>
+          <FormControl>
+            <FormLabel>Username</FormLabel>
+            <Input placeholder="username" />
+            {/* <FormHelperText>We'll never share your email.</FormHelperText> */}
+            <FormLabel>Restaurant</FormLabel>
+            <Input placeholder="restaurant" />
+            <FormLabel>Meal</FormLabel>
+            <Input placeholder="meal" />
+            <FormLabel>Price</FormLabel>
+            <Input placeholder="price" />
+            <FormLabel>Rating</FormLabel>
+            <Input placeholder="rating" />
+            <FormLabel>Review</FormLabel>
+            <Input placeholder="review" />
+            
+          </FormControl>
+          </Box>
+          </PopoverBody>
+        </PopoverContent>
+        </Popover>
   </div>,
       <div>
       <Button key="4" className='b3' onClick={onSignOut}>Log Out
