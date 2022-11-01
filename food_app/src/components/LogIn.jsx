@@ -28,18 +28,30 @@ const LogIn = (props) => {
     // }
     
     const handleSubmit = (e) => {
-        e.preventDefault();
-        function onRegister() {
-          signInWithEmailAndPassword(auth, email, password).catch((error) =>
+        // e.preventDefault();
+        // function onRegister() {
+        //   signInWithEmailAndPassword(auth, email, password).catch((error) =>
+        //     console.log(error)
+        //   );
+        // }
+        // onRegister();
+        // setEmail("")
+        // setPassword("")
+
+        // navigate('/home')
+        console.log(email, password)
+
+        signInWithEmailAndPassword(auth, email, password)
+        .then(function(result) {
+            console.log('user signed in')
+            setEmail('')
+            setPassword('')
+            navigate('/home')
+        }).catch(function(error) {
+            console.log('there was an error signing in')
             console.log(error)
-          );
-        }
-        onRegister();
-        setEmail("")
-        setPassword("")
-
-        navigate('/home')
-
+            alert(error.message)
+        });
     };
     console.log({email});
   return (
