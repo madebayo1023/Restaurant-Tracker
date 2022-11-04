@@ -65,6 +65,11 @@ const menu = (
   />
 );
 
+const toMap = () => {
+  navigate('/map')
+  console.log("clicked")
+};
+
 const onSignOut = () => {
     navigate('/signin')
 };
@@ -161,7 +166,7 @@ const MenuComponent = () => (
         </Button>
   </div>,
       <Button key="3">My Account</Button>,
-      <Button key="2">Find Restaurants</Button>,
+      <Button key="2" onClick={toMap}>Find Restaurants</Button>,
       <Button key="1" type="primary">
         Home
       </Button>
