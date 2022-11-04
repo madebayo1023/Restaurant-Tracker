@@ -3,40 +3,45 @@ import { PageHeader, Input, Button, Card } from 'antd';
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth} from "../base.js";
 import { Link } from "@reach/router"
+
+import Alert from '@mui/material/Alert';
 const { TextArea } = Input;
 
 
 const LogIn = (props) => {
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
 
     const onEmailChange = (event) => setEmail(event.target.value)
+   
     const onPasswordChange = (event) => setPassword(event.target.value)
 
-    // const onSignUp = () => {
-    //     console.log('log in')
-    //     console.log(email, password)
-
-    //     // createUserWithEmailAndPassword(auth, email, password)
-    //     //     .catch(function(error) {
-    //     //         console.log('error in signup')
-    //     //     });
-
-    //     setEmail('')
-    //     setPassword('')
-        
-    // }
-    
     const handleSubmit = (e) => {
         e.preventDefault();
         function onRegister() {
+          
           signInWithEmailAndPassword(auth, email, password).catch((error) =>
-            console.log(error)
+        //   <Alert severity="error">This is an error alert — check it out!</Alert>
+            errorMessage(),
+            // console.log(error),
+            alert("Incorrect Username/Password")
+            
+            // console.log(error)
           );
         }
         onRegister();
-        setEmail('')
-        setPassword('')
+        // console.log('data before send:',email,password)
+        setEmail("")
+        setPassword("")
+        
+    };
+    const errorMessage = () => {
+        console.log("signed in");
+        return (
+            <Alert severity="error">This is an error alert — check it out!</Alert>
+            
+        );
+        
     };
 
   return (
@@ -72,6 +77,7 @@ const LogIn = (props) => {
                             <Input.Password placeholder="Password" onChange={onPasswordChange}/>
                         </div>
                     </div>
+                    w
 
                     <div style={{width: "100%"}}>
                         <div style={{float: "left"}}>
