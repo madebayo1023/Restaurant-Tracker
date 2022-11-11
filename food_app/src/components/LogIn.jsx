@@ -47,6 +47,7 @@ const LogIn = (props) => {
             setEmail('')
             setPassword('')
             navigate('/home')
+            
         }).catch(function(error) {
             console.log('there was an error signing in')
             console.log(error)
