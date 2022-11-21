@@ -74,6 +74,10 @@ const onSignOut = () => {
     navigate('/signin')
 };
 
+const toProfile = () => {
+  navigate('/profile')
+}
+
 const MenuComponent = () => (
   <PageHeader
     title="Cravings"
@@ -165,7 +169,7 @@ const MenuComponent = () => (
 
         </Button>
   </div>,
-      <Button key="3">My Account</Button>,
+      <Button key="3" onClick={(toProfile)}>My Account</Button>,
       <Button key="2" onClick={toMap}>Find Restaurants</Button>,
       <Button key="1" type="primary">
         Home
@@ -173,6 +177,7 @@ const MenuComponent = () => (
     ]}
   >
   </PageHeader>
+  
 );
 
 export default MenuComponent;
