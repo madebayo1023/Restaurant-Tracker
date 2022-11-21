@@ -1,9 +1,10 @@
 import { FirebaseError } from "firebase/app";
 import { getAuth } from "firebase/auth";
-import { getDatabase, ref, set , onValue, on} from "firebase/database";
-import { db } from "../base";
+import { getDatabase, onValue, ref, set, get, child } from "firebase/database";
+import { db, firestore } from "../base";
 import { ref as sRef } from 'firebase/storage';
 // import { firebase } from "firebase/database"
+import { collection, getFirestore, onSnapshot } from 'firebase/firestore'
 import React, { useEffect, useState } from 'react';
 import { useEditableControls, useRangeSlider } from "@chakra-ui/react";
 import { Reorder } from "framer-motion";
@@ -40,8 +41,8 @@ const UsrProfile = (props) => {
         console.log(user.email);
         // console.log("ellie");
         // con  st newRef = db.getReference('users');
+        const [name, setName] = useState('Test');
         
-        // console.log(ref);
         
         // const ref = ref(db, "users/" + user.uid)
         // newRef.child("firstname").once('value', getuserName);
@@ -52,7 +53,43 @@ const UsrProfile = (props) => {
         //     var val = snapshot.val();
         //     console.log(val);
         // }
-        const rref = ref(db, "/users/" + user.uid +"/firstName/");
+        // const ref = collection(firestore, "/users/" + user.uid +"/firstName/");
+        // const snap =  ref/.;
+        // console.log(snap.exists)
+        // const colRef = getFirestore(app);
+        console.log("ji");
+        const userRef = ref(db);
+        // get(userRef, (snapshot) => {
+        //     setName(snapshot.val());
+        //     console.log(snapshot.val());
+        // })
+        get(child(userRef, `users/${user.uid}/firstName`)).then((snapshot) => {
+            if (snapshot.exists()) {
+                setName(snapshot.val());
+              console.log(snapshot.val());
+            } else {
+              console.log("No data available");
+            }
+          }).catch((error) => {
+            console.error(error);
+          });
+        // get(ref(db, 'users/' + user.uid +'/firstName'), (snapshot) => {
+        //     setName(snapshot.val());
+        //     console.log("snapshot");
+        //     // ...
+        //   });
+        // useEffect(() => {
+        //     onSnapshot(collection(fdb, "/users/" + user.uid +"/firstName/", (snapshot) => {
+        //         console.log("hello");
+        //     }))
+        // });
+        // let ref = firestore.collection()
+        // collection(firestore, '/user/Xyrgv4DxTzZNbIBq9CirbEqWnFQ2/firstName', (snapshot) => {
+        //     // setName(snapshot.val());
+        //     console.log("hello");
+        // });
+      
+        // ref(db, 
         // const db = getDatabase();
         // var ref = new Firebase("https://food-diary-cs222-default-rtdb.firebaseio.com/users/Xyrgv4DxTzZNbIBq9CirbEqWnFQ2/firstName");
         // const ref = db.ref("users/" + user.uid  + "/firstName/");
@@ -62,12 +99,12 @@ const UsrProfile = (props) => {
         //     console.log("hello");
           
         //   }); 
-        console.log(rref.val);
-        rref.on('value', (snapshot) => {
-            console.log(snapshot.val());
-          }, (errorObject) => {
-            console.log('The read failed: ' + errorObject.name);
-          });
+        // console.log(ref.val);
+        // rref.on('value', (snapshot) => {
+        //     console.log(snapshot.val());
+        //   }, (errorObject) => {
+        //     console.log('The read failed: ' + errorObject.name);
+        //   });
         var pageTitle = 'Welcome, { user.email } ';
         // const query = useDatabaseSnapshot(["fname", "s"], ref)
         // console.log(ref.firstName);
@@ -92,7 +129,7 @@ const UsrProfile = (props) => {
         
         return (
             // <h2>"Hello"</h2>
-            <h1>hello, { user.email }</h1>
+            <h1>hello, { name }</h1>
         )
     
     
