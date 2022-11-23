@@ -57,7 +57,7 @@ const UsrProfile = (props) => {
         // const snap =  ref/.;
         // console.log(snap.exists)
         // const colRef = getFirestore(app);
-        console.log("ji");
+        // console.log("ji");
         const userRef = ref(db);
         // get(userRef, (snapshot) => {
         //     setName(snapshot.val());
@@ -129,7 +129,7 @@ const UsrProfile = (props) => {
         
         return (
             // <h2>"Hello"</h2>
-            <h1>hello, { name }</h1>
+            <h1>Hello, { name }</h1>
         )
     
     
