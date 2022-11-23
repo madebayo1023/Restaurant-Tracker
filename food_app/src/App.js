@@ -20,12 +20,6 @@ function App() {
         <MapPage path="/map"/>
         <UsrProfile path="/profile"/>
     </Router>
-    {/* <BrowserRouter>
-      <Routes>
-        <Route exact path="/sign_in" element={<LogIn />}/>
-        <Route exact path="/sign_up" element={<SignUp />}/>
-      </Routes>
-    </BrowserRouter> */}
 </div>
   );
 }

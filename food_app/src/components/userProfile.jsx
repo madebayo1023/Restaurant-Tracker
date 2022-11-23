@@ -8,6 +8,7 @@ import { collection, getFirestore, onSnapshot } from 'firebase/firestore'
 import React, { useEffect, useState } from 'react';
 import { useEditableControls, useRangeSlider } from "@chakra-ui/react";
 import { Reorder } from "framer-motion";
+import NavBar from "./NavBar";
 // import { ref } from "firebase/database";
 // import { useDatabaseSnapshot } from "@react-query-firebase/database";
 // const auth = getAuth();
@@ -129,7 +130,10 @@ const UsrProfile = (props) => {
         
         return (
             // <h2>"Hello"</h2>
-            <h1>Hello, { name }</h1>
+            <div>
+              <NavBar name = {`Hello, ${name}`}></NavBar>
+
+            </div>
         )
     
     
