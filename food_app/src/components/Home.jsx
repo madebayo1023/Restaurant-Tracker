@@ -29,57 +29,19 @@ import {
 
 import { Input} from 'antd';
 
-const menu = (
-  <Menu
-    items={[
-      {
-        key: '1',
-        label: (
-          <a target="_blank" rel="noopener noreferrer" href="http://www.alipay.com/">
-            1st menu item
-          </a>
-        ),
-      },
-      {
-        key: '2',
-        label: (
-          <a target="_blank" rel="noopener noreferrer" href="http://www.taobao.com/">
-            2nd menu item
-          </a>
-        ),
-      },
-      {
-        key: '3',
-        label: (
-          <a target="_blank" rel="noopener noreferrer" href="http://www.tmall.com/">
-            3rd menu item
-          </a>
-        ),
-      },
-      {
-        key: '4',
-        label: (
-          <a target="_blank" rel="noopener noreferrer" href="http://www.tmall.com/">
-            4th menu item
-          </a>
-        ),
-      },
-    ]}
-  />
-);
 
-const toMap = () => {
-  navigate('/map')
-  console.log("clicked")
-};
+// const toMap = () => {
+//   navigate('/map')
+//   console.log("clicked")
+// };
 
-const onSignOut = () => {
-    navigate('/signin')
-};
+// const onSignOut = () => {
+//     navigate('/signin')
+// };
 
-const toProfile = () => {
-  navigate('/profile')
-}
+// const toProfile = () => {
+//   navigate('/profile')
+// }
 const handleSubmit = (event) => {
   console.log("here");
   event.preventDefault();
@@ -128,27 +90,7 @@ const FillForm = (props) => {
   
   return (
   <PageHeader
-    title="Cravings"
-    className="site-page-header"
     extra={[
-      <div>
-          <Button key="6" className='b1'>Saved Post
-      
-            <style>{`
-              .b1 {
-                padding-left: 100px;
-                padding-right: 100px;
-                padding-top: 100px;
-                padding-bottom: 100px;
-                background-color: #FFFFFF;
-                position: fixed;
-                bottom: 100px;
-                right: 270px;
-              }
-          `}</style>
-
-            </Button>
-      </div>,
       <div>
         <Popover placement='top'> 
         <PopoverTrigger>
@@ -199,31 +141,7 @@ const FillForm = (props) => {
           </PopoverBody>
         </PopoverContent>
         </Popover>
-  </div>,
-      <div>
-      <Button key="4" className='b3' onClick={onSignOut}>Log Out
-
-
-      <style>{`
-              .b3 {
-                padding-left: 20px;
-                padding-right: 20px;
-                padding-top: 20px;
-                padding-bottom: 20px;
-                background-color: #FFFFFF;
-                position: fixed;
-                top: 20px;
-                right: 30px;
-              }
-          `}</style>
-
-        </Button>
-  </div>,
-      <Button key="3" onClick={(toProfile)}>My Account</Button>,
-      <Button key="2" onClick={toMap}>Find Restaurants</Button>,
-      <Button key="1" type="primary">
-        Home
-      </Button>
+  </div>
     ]}
   >
   </PageHeader>

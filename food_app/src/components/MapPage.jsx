@@ -1,8 +1,13 @@
 import React from 'react'
+import NavBar from "./NavBar";
+
 
 const MapPage = (props) => {
   return (
-    <div>MapPage</div>
+    <div>
+      <NavBar name="Map Page">
+      </NavBar>
+      </div>
   )
 }
 
