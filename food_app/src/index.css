@@ -32,3 +32,13 @@ html, body {
 .app_main_navigation {
   margin-bottom: 20px
 }
+
+.topnav input[type=text] {
+  float: left;
+  padding: 6px;
+  margin-top: 8px;
+  margin-right: 16px;
+  border: none;
+  font-size: 17px;
+  width: 400px;
+}

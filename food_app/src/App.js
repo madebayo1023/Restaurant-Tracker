@@ -4,7 +4,7 @@ import './index.css'
 import SignUp from "./components/SignUp";
 import LogIn from "./components/LogIn";
 import Home from "./Home";
-import MapPage from "./components/MapPage";
+import MapPage from "./map.js";
 import UsrProfile from "./components/userProfile";
 import { Maps } from './components/GoogleMapsApi';
 import { Router, Link } from '@reach/router';
