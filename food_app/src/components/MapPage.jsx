@@ -1,14 +1,32 @@
 import React from 'react'
-import NavBar from "./NavBar";
+import { GoogleMap, LoadScript } from '@react-google-maps/api';
 
+const containerStyle = {
+  width: '100%',
+  height: '800px'
+};
 
-const MapPage = (props) => {
+const center = {
+  lat: 40.1124969,
+  lng: -88.2267544
+};
+
+function MyComponent() {
   return (
-    <div>
-      <NavBar name="Map Page">
-      </NavBar>
-      </div>
+    <LoadScript
+      googleMapsApiKey="AIzaSyAYTJ0944YPKlB78BJoXVhdriSmUffvBfY"
+    >
+      <GoogleMap
+        mapContainerClassName='gMap'
+        mapContainerStyle={containerStyle}
+        center={center}
+        zoom={15}
+      >
+        { /* Child components, such as markers, info windows, etc. */ }
+        <></>
+      </GoogleMap>
+    </LoadScript>
   )
 }
 
-export default MapPage
+export default React.memo(MyComponent)

@@ -18,6 +18,7 @@ import {
   PopoverCloseButton,
   PopoverAnchor,
   Box,
+  Container
 } from '@chakra-ui/react'
 
 import {
@@ -110,23 +111,17 @@ const FillForm = (props) => {
                 right: 275px;
               }
           `}</style>
-
         </Button>
         </PopoverTrigger>
         <PopoverContent>
-          {/* <Button onClick={onSubmit}>Submit</Button> */}
-        <PopoverHeader fontWeight='semibold' onChange={onSubmit}>Enter Meal</PopoverHeader>
+        <PopoverHeader fontWeight='semibold' onChange={onSubmit}></PopoverHeader>
           <PopoverArrow />
-          <PopoverCloseButton />
           <PopoverBody>
-          <Box>
+          <Container minW='300px' background='#BCA5D3' padding={'13px'}>
           <FormControl>
-            {/* <FormLabel>Username</FormLabel>
-            <Input placeholder="username" />
-            <FormHelperText>We'll never share your email.</FormHelperText> */}
             <Button onClick={onSubmit}>Submit</Button>  
             <FormLabel>Restaurant</FormLabel>
-            <Input placeholder="restaurant" onChange={onRestChange}/>
+            <Input placeholder="restaurant"onChange={onRestChange}/>
             <FormLabel>Meal</FormLabel>
             <Input placeholder="meal" onChange={onMealChange}/>
             <FormLabel>Price</FormLabel>
@@ -135,9 +130,8 @@ const FillForm = (props) => {
             <Input placeholder="rating" onChange={onRatingChange}/>
             <FormLabel>Review</FormLabel>
             <Input placeholder="review" onChange={onReviewChange}/>
-            {/* <Button key="8" onClick = {handleSubmit}>Submit</Button> */}
           </FormControl>
-          </Box>
+          </Container>
           </PopoverBody>
         </PopoverContent>
         </Popover>
