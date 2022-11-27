@@ -6,9 +6,9 @@ import { AuthContext } from "./AuthProvider";
 // import "./Home.css";
 import { useNavigate } from "react-router-dom";
 import { ref, onValue } from "firebase/database";
-import FillForm from "./components/Home";
+import FillForm from "./components/Popover";
 import NavBar from "./components/NavBar";
-import MenuComponent from "./components/Home";
+import MenuComponent from "./components/Popover";
 
 
 function Home() {

@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import { PageHeader, Input, Button, Card } from 'antd';
-import { Link } from "@reach/router"
+import { Link, navigate } from "@reach/router"
 
 import { auth, db } from "../base.js";
 // import "./Signup.css";
@@ -55,6 +55,7 @@ const SignUp = (props) => {
         setPassword("")
         setFirstName("")
         setLastName("")
+        navigate('/log_in')
       };
 
   return (
