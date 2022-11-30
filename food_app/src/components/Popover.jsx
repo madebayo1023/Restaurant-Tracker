@@ -138,6 +138,8 @@ const FillForm = (props) => {
             <Input placeholder="rating" onChange={onRatingChange}/>
             <FormLabel>Review</FormLabel>
             <Input placeholder="review" onChange={onReviewChange}/>
+            <FormLabel>Image</FormLabel>
+            <Input type="file"/>
           </FormControl>
         </Box>
         {/* <p>some contents...</p>
