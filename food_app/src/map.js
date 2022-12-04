@@ -11,12 +11,12 @@ function Map() {
 
   return (
     <div>
-      <NavBar></NavBar>
-      <div className="input-container">
+      <NavBar name="I'm Craving..."></NavBar>
+      {/* <div className="input-container">
         <div className="input">
           <input type="text" placeholder="I'm craving . . ." onChange={onInputChange}></input>
         </div>
-      </div>
+      </div> */}
       <MapComponent restaurant = {rest}></MapComponent>
     </div>
   );
