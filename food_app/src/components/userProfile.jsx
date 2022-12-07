@@ -42,7 +42,7 @@ const UsrProfile = (props) => {
         console.log(user.email);
         // console.log("ellie");
         // con  st newRef = db.getReference('users');
-        const [name, setName] = useState('Test');
+        const [name, setName] = useState('');
         
         
         // const ref = ref(db, "users/" + user.uid)

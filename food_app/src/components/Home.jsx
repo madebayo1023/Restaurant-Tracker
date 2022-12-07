@@ -63,8 +63,10 @@ const FillForm = (props) => {
   const auth = getAuth();
   const user = auth.currentUser;
   console.log(user.email);
+  console.log("here");
   const onSubmit = (e) => {
     e.preventDefault();
+    console.log("here");
     setID(id + 1);
     function onCreate() {
       set(ref(db, "loggedPosts/" + user.uid + "/"+ id), {
@@ -79,7 +81,7 @@ const FillForm = (props) => {
     }
     onCreate();
 
-    console.log(id);
+    console.log("id: " + id);
     console.log(rest);
     
     setRest("");

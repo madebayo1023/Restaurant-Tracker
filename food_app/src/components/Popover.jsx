@@ -2,11 +2,13 @@ import { MoreOutlined } from '@ant-design/icons';
 import { navigate } from '@reach/router';
 import { Button, Dropdown, Menu, PageHeader, Row, Tag, Typography, Modal } from 'antd';
 import React, {useState} from 'react'
-import { ref, set } from "firebase/database";
+// import { ref, set } from "firebase/database";
 import { auth, db } from "../base.js";
 import { getAuth } from "firebase/auth";
 import {uploadBytes, ref as storage_ref} from "firebase/storage";
 import {storage} from "../base.js";
+import { getDatabase, onValue, ref, set, get, child } from "firebase/database";
+
 
 
 import {
@@ -53,19 +55,67 @@ const FillForm = (props) => {
   const onImageChange = (event) => setImage(event.target.files[0]);
   const auth = getAuth();
   const user = auth.currentUser;
-  console.log(user.email);
+  // console.log(user.email);
+  // const auth = getAuth();
+  // const user = auth.currentUser;
+  // console.log("here");
+  var newtID = 0;
   const onSubmit = (e) => {
     e.preventDefault();
-    setID(id + 1);
+    // console.log(user.uid);
+    const userRef = child(ref(db), `loggedPosts/` + user.uid );
+    console.log(userRef);
+    
+    onValue(userRef, (snapshot) => {
+      console.log("here 1");
+      // setID(parseInt(snapshot.val()) + 1);
+      console.log(snapshot.val());
+      console.log(snapshot.key);
+      // setID(parseInt(snapshot.val()) + 1);
+      console.log(parseInt(snapshot.val()) + 1);
+      snapshot.forEach((data) => {
+        console.log("here");
+        console.log(data.key);
+        console.log(data.val());
+        // if (data.id  == "id") {
+        //   setID(parseInt(data.val()) + 1);
+        //   console.log(data.val());
+        //   console.log("setting id");
+        // }
+        console.log(parseInt(data.key) + 1); 
+        newtID = parseInt(data.key) + 1;
+        setID(parseInt(data.key) + 1);
+        console.log(id);
+        
+      });
+      console.log("Here");
+      console.log(newtID);
+      // console.log(snapshot.val());
+    })
+   
+    console.log("submmitting");
+    console.log("id");
+    console.log(id);
+    console.log("id");
+    
     function onCreate() {
-      set(ref(db, "loggedPosts/" + user.uid + "/"+ id), {
-        // id: id,
+      console.log(newtID);
+      set(ref(db, "loggedPosts/" + user.uid + "/"+ newtID), {
+        id: newtID,
+        // setID(db.push().getKey() + 1);
         resturant: rest,
         meal: meal,
         price: price,
         rate: rating,
         rev: review,
       });
+      console.log("done creating");
+      setRest("");
+      setMeal("");
+      setPrice("");
+      setRating("");
+      setReview("");
+      // setID(id + 1);
     
       if (image == null) return;
       const imageRef = storage_ref(storage, "Images/" + user.uid + "/"+ id);
@@ -76,21 +126,22 @@ const FillForm = (props) => {
     }
     onCreate();
 
-    console.log(id);
-    console.log(rest);
-
+    console.log("id: " + newtID);
+    // console.log(res  t);
+   
     setConfirmLoading(true);
     setTimeout(() => {
       setModal2Open(false);
       setConfirmLoading(false);
     }, 2000);
-    
     setRest("");
     setMeal("");
     setPrice("");
     setRating("");
     setReview("");
     setImage(null);
+    
+
   };
 
   const [modal2Open, setModal2Open] = useState(false);
