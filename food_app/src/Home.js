@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect , Image} from "react";
 import { Button } from "antd";
 import { auth, db } from "./base";
 import { signOut } from "firebase/auth";
@@ -9,8 +9,12 @@ import { useNavigate } from "react-router-dom";
 import FillForm from "./components/Popover";
 import NavBar from "./components/NavBar";
 import MenuComponent from "./components/Popover";
-import { getDatabase, onValue, ref, set, get, child } from "firebase/database";
+import { getDatabase, onValue, ref, set, get, child, onChildAdded } from "firebase/database";
 import { getAuth } from "firebase/auth";
+// import { storage } from "firebase/storage";
+import {storage} from "./base.js";
+
+import {uploadBytes, ref as storage_ref, getDownloadURL} from "firebase/storage";
 
 function Home() {
   // const { currentUser } = useContext(AuthContext);
@@ -35,13 +39,15 @@ function Home() {
   //     navigate("/login");
   //   }
   // };
+  const [id, setId] = useState(0);
   const [name, setName] = useState('');
   const [rest, setRest] = useState('');
   const [meal, setMeal]= useState('');
   const [price, setPrice]= useState('');
   const [rat, setRat]= useState('');
   const [rev, setRev]= useState('');
-  const [image, setImage]= useState('');
+  const [image, setImage]= useState(undefined);
+  
   // const [exp, setExp] = useState([{
   //   rest: "rest",
   //   meal: "meal",
@@ -65,13 +71,20 @@ function Home() {
   });
   // let meals = [];
   // console.log(child(userRef, `loggedPosts/${user.uid}`));
+  // const rref = 
+  // onChildAdded(child(userRef, `loggedPosts/${user.uid}`), (data) => {
+  //   addMeal()
+  // })
   get(child(userRef, `loggedPosts/${user.uid}`)).then((snapshot) => {
+  // onValue(userRef, (snapshot) =>)
     if (snapshot.exists()) {
       snapshot.forEach((data) => {
         // setMeal(data.val());
         // console.log(data.val())
+        setId(parseInt(data.key));
         data.forEach((meal) => {
           // console.log(meal.val());
+          
           if (meal.key == "meal") {
             // meals.push(meal.val());
 
@@ -104,6 +117,20 @@ function Home() {
   }).catch((error) => {
     console.error(error);
   });
+  // child(userRef, `users/${user.uid}/firstName`)
+  const imageRef = storage_ref(storage, "Images/" + user.uid + "/"+ id);
+  getDownloadURL(imageRef)
+    .then((url) => {
+      console.log(id);
+      const img = document.getElementById("img");
+      console.log(url);
+      // img.setAttribute('src', url);
+      setImage(url);
+      console.log(image);
+    })
+    .catch((e) => {
+      console.log("whoopsies" + e);
+    });
 
   // var postRef = ref('loggedPosts');
   // postRef.orderByKey().on('child_added', (snapshot) => {
@@ -122,6 +149,8 @@ function Home() {
       <p>It cost {price} </p>
       <p>Your rating was {rat}</p>
       <p>Your review: {rev}</p>
+      <img style={{height: 200, width: 200}} src={image} alt="Food Image"/>
+      {/* <img style={{height: 200, width: 200}} /> */}
       
       {/* {currentUser && <p>Welcome, {username}</p>}
       <div className="buttons">
