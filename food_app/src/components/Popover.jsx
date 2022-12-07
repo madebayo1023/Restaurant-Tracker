@@ -5,7 +5,10 @@ import React, {useState} from 'react'
 // import { ref, set } from "firebase/database";
 import { auth, db } from "../base.js";
 import { getAuth } from "firebase/auth";
+import {uploadBytes, ref as storage_ref} from "firebase/storage";
+import {storage} from "../base.js";
 import { getDatabase, onValue, ref, set, get, child } from "firebase/database";
+
 
 
 import {
@@ -43,11 +46,13 @@ const FillForm = (props) => {
   const [price, setPrice] = useState("");
   const [rating, setRating] = useState("");
   const [review, setReview] = useState("");
+  const [image, setImage] = useState(null);
   const onRestChange = (event) => setRest(event.target.value);
   const onMealChange = (event) => setMeal(event.target.value);
   const onPriceChange = (event) => setPrice(event.target.value);
   const onRatingChange = (event) => setRating(event.target.value);
   const onReviewChange = (event) => setReview(event.target.value);
+  const onImageChange = (event) => setImage(event.target.files[0]);
   const auth = getAuth();
   const user = auth.currentUser;
   // console.log(user.email);
@@ -112,6 +117,12 @@ const FillForm = (props) => {
       setReview("");
       // setID(id + 1);
     
+      if (image == null) return;
+      const imageRef = storage_ref(storage, "Images/" + user.uid + "/"+ id);
+      uploadBytes(imageRef, image).then(() => {
+        alert("Image Uploaded");
+      })
+
     }
     onCreate();
 
@@ -123,8 +134,14 @@ const FillForm = (props) => {
       setModal2Open(false);
       setConfirmLoading(false);
     }, 2000);
+    setRest("");
+    setMeal("");
+    setPrice("");
+    setRating("");
+    setReview("");
+    setImage(null);
     
-    
+
   };
 
   const [modal2Open, setModal2Open] = useState(false);
@@ -157,7 +174,7 @@ const FillForm = (props) => {
               `}</style> */}
       </Button>
       <Modal
-        title="Log Posts"
+        title="Log Post"
         centered
         open={modal2Open}
         onOk={handleOk}
@@ -184,7 +201,7 @@ const FillForm = (props) => {
             <FormLabel>Review</FormLabel>
             <Input placeholder="review" onChange={onReviewChange}/>
             <FormLabel>Image</FormLabel>
-            <Input type="file"/>
+            <Input type="file" onChange={onImageChange}/>
           </FormControl>
         </Box>
         {/* <p>some contents...</p>
